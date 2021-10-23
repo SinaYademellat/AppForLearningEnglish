@@ -1,7 +1,15 @@
 import tkinter
 
 index_i=0 
-new_word=["Next","ALI","fares","javad","reza","1231312"]
+new_word=[]
+
+def usefile(nameOfFile):
+   nextWord=[]
+   f=open(nameOfFile,'r')
+   tmp_str=f.read()
+   nextWord=tmp_str.split()
+   f.close()
+   return nextWord
 
 
 root=tkinter.Tk()
@@ -32,6 +40,6 @@ b_next=tkinter.Button(root,text="L",bg="Lime",width="24",command=lambda:Button_N
 b_else=tkinter.Button(root,text="R",bg="red",width="23" ,command=lambda:Button_Else()).pack(side=tkinter.RIGHT)
 
 if __name__=="__main__":
-    
+    new_word = usefile("db.txt")
     root.resizable(width=False, height=False) # fix -->  window size  :)
     root.mainloop()
