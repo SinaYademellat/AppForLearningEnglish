@@ -1,16 +1,52 @@
 import tkinter as tk
 
 class AppForLearningEnglish():
-        def __init__(self , title_for_root:str="sina yademellat"):
+        def __init__(self , title_for_root:str="sina yademellat" , list_of_Words:list = ['test_1', 'test_2', 'test_3']):
             '''
                 title_for_root : اسم آن گروه از لغات باشد بهتر است 
             '''
+            
             self.root = tk.Tk()
-            self.main_word = tk.Label(self.root,text="",fg="black",bg="white",width="20",height="5",font=("Courier", 32))
-            self.main_word.pack(pady=50)
 
+            # --------------- title ---------------
             spacer= " " * 10
             self.root.title(spacer + title_for_root)
+            #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            # --------------- Label ---------------
+            self.main_word = tk.Label(self.root,text="",fg="black",bg="white",width="20",height="5",font=("Courier", 32))
+            self.main_word.pack(pady=50)
+            #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+            self.current_word_index = -1 
+            self.list_of_Words = list_of_Words
+            
+            # --------------- Buttom ---------------
+            Buttom_1 = tk.Button(self.root,
+                   text="Buttom_1", 
+                   command=self.Next_word_for_Button1,
+                   activebackground="blue", 
+                   activeforeground="white",
+                   anchor="center",
+                   bd=3,
+                   bg="lightgray",
+                   cursor="hand2",
+                   disabledforeground="gray",
+                   fg="black",
+                   font=("Arial", 12),
+                   height=2,
+                   highlightbackground="black",
+                   highlightcolor="green",
+                   highlightthickness=2,
+                   justify="center",
+                   overrelief="raised",
+                   padx=10,
+                   pady=5,
+                   width=10,
+                   wraplength=100
+                    )
+            Buttom_1.place(x=5, y=54)
+            #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         def set_geometry_center(self,window_width:int=800,window_height:int=300):
             """می خواهیم صحفه دقیقا وسط مانیتور باشه
@@ -32,10 +68,13 @@ class AppForLearningEnglish():
 
         def update_word(self,new_word:str=""):
              self.main_word.config(text=new_word)
-        
+
+
+        def Next_word_for_Button1(self):
+                self.current_word_index += 1
+                self.current_word_index %= len(self.list_of_Words)
+                self.update_word(self.list_of_Words[self.current_word_index])
+
         def Run(self):
             self.set_geometry_center()
-            self.update_word('Ali')
             self.root.mainloop()
-
-
