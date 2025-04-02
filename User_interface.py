@@ -46,7 +46,91 @@ class AppForLearningEnglish():
                    wraplength=100
                     )
             Buttom_1.place(x=5, y=54)
+
+            # ------- ----- B2
+            Buttom_2 = tk.Button(self.root,
+                   text="Buttom_2", 
+                #    command=self.Next_word_for_Button1,
+                   activebackground="red", 
+                   activeforeground="white",
+                   anchor="center",
+                   bd=3,
+                   bg="lightgray",
+                   cursor="hand2",
+                   disabledforeground="gray",
+                   fg="black",
+                   font=("Arial", 12),
+                   height=2,
+                   highlightbackground="black",
+                   highlightcolor="green",
+                   highlightthickness=2,
+                   justify="center",
+                   overrelief="raised",
+                   padx=10,
+                   pady=5,
+                   width=10,
+                   wraplength=100
+                    )
+            Buttom_2.place(x=5, y=(54*2))
+            
+            # ------- ----- B3
+            Buttom_3 = tk.Button(self.root,
+                   text="Buttom_3", 
+                #    command=self.Next_word_for_Button1,
+                   activebackground="red", 
+                   activeforeground="white",
+                   anchor="center",
+                   bd=3,
+                   bg="lightgray",
+                   cursor="hand2",
+                   disabledforeground="gray",
+                   fg="black",
+                   font=("Arial", 12),
+                   height=2,
+                   highlightbackground="black",
+                   highlightcolor="green",
+                   highlightthickness=2,
+                   justify="center",
+                   overrelief="raised",
+                   padx=10,
+                   pady=5,
+                   width=10,
+                   wraplength=100
+                    )
+            Buttom_3.place(x=5, y=(54*3))
+
+                        
+            # ------- ----- B4
+            Buttom_4 = tk.Button(self.root,
+                   text="Buttom_4", 
+                #    command=self.Next_word_for_Button1,
+                   activebackground="red", 
+                   activeforeground="white",
+                   anchor="center",
+                   bd=3,
+                   bg="lightgray",
+                   cursor="hand2",
+                   disabledforeground="gray",
+                   fg="black",
+                   font=("Arial", 12),
+                   height=2,
+                   highlightbackground="black",
+                   highlightcolor="green",
+                   highlightthickness=2,
+                   justify="center",
+                   overrelief="raised",
+                   padx=10,
+                   pady=5,
+                   width=10,
+                   wraplength=100
+                    )
+            Buttom_4.place(x=5, y=(54*4))
+            
+            
             #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 
         def set_geometry_center(self,window_width:int=800,window_height:int=300):
             """می خواهیم صحفه دقیقا وسط مانیتور باشه

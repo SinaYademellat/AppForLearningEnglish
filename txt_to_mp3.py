@@ -1,5 +1,3 @@
-import os
-
 from gtts import gTTS
 from playsound import playsound
 from pathlib import Path
@@ -46,16 +44,3 @@ class text2mp3():
                     self.make_mp3( name_of_mp3 =  input_word ,path_for_save = self.save_path ,input_txt = new_txt_for_mp3, slow_parm = False)
                     self.list_of_mp3.append(current_item)
                     self.pronunciation(input_word)
-
-
-
-
-
-
-# if __name__ == '__main__':
-#             A = text2mp3(save_path='voice')
-#             # A.set_list_of_mp3()
-#             # print(A.list_of_mp3)
-#             A.pronunciation('sina1')
-#             print('*'*12)
-#             A.pronunciation('sina12')
