@@ -1,8 +1,3 @@
-"""_summary_
- این این قسمت یک فیلم یوتیوب هست که یاد داد
-
-"""
-
 class Lernkartei_word:
     def __init__(self, Txt:str  , Status:int , Collocations:str = None ) -> None:
         """_summary_
