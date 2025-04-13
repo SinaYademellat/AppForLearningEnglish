@@ -55,10 +55,3 @@ class Lernkartei_word:
         
         return my_print
         
-
-
-# if __name__ == '__main__':
-#     A = Lernkartei_word(Txt='test_1', Status=2,Collocations='colloca_1')
-#     A.Save_in_txt()
-#     A.txt ='test_2'
-#     A.Save_in_txt()
