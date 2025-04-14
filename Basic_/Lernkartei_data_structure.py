@@ -11,7 +11,8 @@
 
 class Lernkartei_word:
     """
-     سلام 
+     این دیتااستراکچر اصلی کلمات هست  مثل کارت های لغت هست
+    برای هر کدام از جعبه هاهم به شکل یک فایل درست ذخیره کردم
     """
     def __init__(self, Txt:str  ,  Collocations:str = None , Status:int=None  ) -> None:
         """_summary_
@@ -30,21 +31,6 @@ class Lernkartei_word:
         self.txt = Txt
         self.collocations = Collocations
         self.status = Status 
-        
-    def Save_in_txt(self):
-        main_path = 'tmp_db_txt/'
-        txt_file =f'Status_{self.status}.txt'
-
-        path_is = main_path + 'Txt_' + txt_file 
-        f = open(path_is, "a")
-        f.write(self.txt + '\n')
-        f.close()
-
-        path_is = main_path + 'collocations_' + txt_file 
-        f = open(path_is, "a")
-        f.write(self.collocations + '\n')
-        f.close()
-
 
     def __repr__(self):
         my_print = f"""
@@ -54,4 +40,3 @@ class Lernkartei_word:
             """
         
         return my_print
-        

@@ -1,5 +1,4 @@
 __pycache__/
-*.pyc
-*.mp3
-*.txt
-*.pkl
+TMP_/
+tmp_*.ipynb
+
