@@ -12,3 +12,15 @@ TMP_/
 
 tmp_*.ipynb
 
+
+---
+
+Run first time
+
+```
+# Run for first time
+python main.py y
+```
+
+
+

@@ -1,7 +1,9 @@
 import tkinter as tk
+from Lernkartei_data_structure import Lernkartei_word
+
 
 class AppForLearningEnglish():
-        def __init__(self , title_for_root:str="sina yademellat" , list_of_Words:list = ['test_1', 'test_2', 'test_3']):
+        def __init__(self , title_for_root:str="sina yademellat" , list_of_Words:list[Lernkartei_word] = None):
             '''
                 title_for_root : اسم آن گروه از لغات باشد بهتر است 
             '''
@@ -153,7 +155,14 @@ class AppForLearningEnglish():
         def Next_word_for_Button1(self):
                 self.current_word_index += 1
                 self.current_word_index %= len(self.list_of_Words)
-                self.update_word(self.list_of_Words[self.current_word_index])
+                
+                # -------------------------------------------------------------------------------------------------
+                #  از قشنگیایی تمیز کد نوشتن همین هست که به همین سادگی یک کار خیلییییی مهم و انجام دادیم
+                # self.update_word(self.list_of_Words[self.current_word_index])     # when : list_of_Words:list[str] = ['test_1', 'test_2', 'test_3']
+                self.update_word(self.list_of_Words[self.current_word_index].txt)   # now  : list_of_Words:list[Lernkartei_word] = None
+                # -------------------------------------------------------------------------------------------------
+
+
 
         def Run(self):
             self.set_geometry_center()
