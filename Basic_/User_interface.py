@@ -15,17 +15,20 @@ class AppForLearningEnglish():
             self.root.title(spacer + title_for_root)
             #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-            # --------------- Label ---------------
-            self.main_word = tk.Label(self.root,text="",fg="black",bg="white",width="20",height="5",font=("Courier", 32))
+            # --------------- Label (word) ---------------
+            self.main_word = tk.Label(self.root,text="",fg="black",bg="#169976",width="20",height="5",font=("Courier", 32))
             self.main_word.pack(pady=50)
             #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
             self.current_word_index = -1 
             self.list_of_Words = list_of_Words
+            # ----------------- add current word object.
+            self.currentWordObject = None
+            # =============================================
             
-            # --------------- Buttom ---------------
+            # --------------- Buttom(1): Next word ---------------
             Buttom_1 = tk.Button(self.root,
-                   text="Buttom_1", 
+                   text="Next word", 
                    command=self.Next_word_for_Button1,
                    activebackground="blue", 
                    activeforeground="white",
@@ -47,13 +50,13 @@ class AppForLearningEnglish():
                    width=10,
                    wraplength=100
                     )
-            Buttom_1.place(x=5, y=54)
+            Buttom_1.place(x=5, y=54 - 4)
 
-            # ------- ----- B2
+            # ------- ----- B2 : Collocations
             Buttom_2 = tk.Button(self.root,
-                   text="Buttom_2", 
-                #    command=self.Next_word_for_Button1,
-                   activebackground="red", 
+                   text="Collocations", 
+                   command=self.show_Collocations_of_curent_word,
+                   activebackground="blue", 
                    activeforeground="white",
                    anchor="center",
                    bd=3,
@@ -73,12 +76,12 @@ class AppForLearningEnglish():
                    width=10,
                    wraplength=100
                     )
-            Buttom_2.place(x=5, y=(54*2))
+            Buttom_2.place(x=5, y=((54*2) + 16))
             
-            # ------- ----- B3
+            # ------- ----- B3 : Wrong
             Buttom_3 = tk.Button(self.root,
-                   text="Buttom_3", 
-                #    command=self.Next_word_for_Button1,
+                   text="wrong", 
+                   command=self.push_WrongButtom,
                    activebackground="red", 
                    activeforeground="white",
                    anchor="center",
@@ -99,34 +102,32 @@ class AppForLearningEnglish():
                    width=10,
                    wraplength=100
                     )
-            Buttom_3.place(x=5, y=(54*3))
+            Buttom_3.place(x=670, y=(54*1))
 
                         
-            # ------- ----- B4
+            # ------- ----- B4 : pronounce
             Buttom_4 = tk.Button(self.root,
-                   text="Buttom_4", 
-                #    command=self.Next_word_for_Button1,
-                   activebackground="red", 
+                   text="pronounce", 
+                #    command=self.def_4,
+                   activebackground="#BBD8A3", 
                    activeforeground="white",
                    anchor="center",
-                   bd=3,
                    bg="lightgray",
                    cursor="hand2",
                    disabledforeground="gray",
                    fg="black",
                    font=("Arial", 12),
-                   height=2,
+                   height=1,
                    highlightbackground="black",
                    highlightcolor="green",
                    highlightthickness=2,
                    justify="center",
-                   overrelief="raised",
-                   padx=10,
-                   pady=5,
-                   width=10,
+                #    -----------------------
+                   overrelief="sunken",
+                #    -----------------------
                    wraplength=100
                     )
-            Buttom_4.place(x=5, y=(54*4))
+            Buttom_4.place(x=(800//2) - 50 , y=(54*4))
             
             
             #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -148,22 +149,48 @@ class AppForLearningEnglish():
 
 
             self.root.geometry(f"{window_width}x{window_height}+{x_offset}+{y_offset}")
+            self.root.resizable(False,False)
+
+            # ----------
+            self.root.config(bg ='#1DCD9F')
 
         def update_word(self,new_word:str=""):
              self.main_word.config(text=new_word)
 
         def Next_word_for_Button1(self):
+                # ==================================
+                if (self.currentWordObject != None):
+                      self.currentWordObject.status += 1
+                
+                # =====================================
+
+
                 self.current_word_index += 1
                 self.current_word_index %= len(self.list_of_Words)
-                
-                # -------------------------------------------------------------------------------------------------
-                #  از قشنگیایی تمیز کد نوشتن همین هست که به همین سادگی یک کار خیلییییی مهم و انجام دادیم
-                # self.update_word(self.list_of_Words[self.current_word_index])     # when : list_of_Words:list[str] = ['test_1', 'test_2', 'test_3']
-                self.update_word(self.list_of_Words[self.current_word_index].txt)   # now  : list_of_Words:list[Lernkartei_word] = None
+                # ----------------------------------------------<< add current word object :) >> ------------------------------------------
+                self.currentWordObject = self.list_of_Words[self.current_word_index]
+                self.update_word(self.currentWordObject.txt) 
                 # -------------------------------------------------------------------------------------------------
 
+        def show_Collocations_of_curent_word(self):
+                    if(self.currentWordObject != None):
+                        self.update_word(self.currentWordObject.collocations) 
 
+        def push_WrongButtom(self):
+                if(self.currentWordObject != None): # زمانی که اصلا کلمه نداریم که معنی نمیده وضعیت را صفر کنیم
+                    """why status = 0 ? :)
+                        # اگر کلمه ای اشتباه گفته شد باید بره به باکس شماره یک
+                        # برای همین امر اول وضعیت را به صفر تغییر داده و تابع کلمه بعد را فرا می خوانیم 
+                        # با توجه به این که برای نمایش کلمه بعدی همیشه وضیعت کلمه قبل را یکی اضافه می کنیم یعنی
+                        # به جعبه بعدی اناتقال میدهیم تا برای دفعه بعدی راحت باشیم
+                        # به همین علت این جا وضعیت را صفر قرار دادیم تا دفعه بعدی در جعبه شماره یک که جعبه اول هست انتقال یابد 
+                    """
+                    self.currentWordObject.status = 0
+                    self.Next_word_for_Button1()    # got to next word
 
+        #! =================================================
+        #  ~~~~~~~~~~~~~~~~~~ <<  RUN >> ~~~~~~~~~~~~~~~~~~
+        #! =================================================
         def Run(self):
             self.set_geometry_center()
             self.root.mainloop()
