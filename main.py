@@ -5,6 +5,9 @@ def main():
     is_first_time = arguments[1]
     if(is_first_time == 'y'):
         print('yes')
+        """راه درستش 
+        راه درستش این هست که به شکل پکچ کنیم و ران بگیریم 
+        """
         return 0 
     
     else:

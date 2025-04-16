@@ -1,3 +1,6 @@
+import os
+import pickle
+
 import tkinter as tk
 from Lernkartei_data_structure import Lernkartei_word
 
@@ -162,6 +165,9 @@ class AppForLearningEnglish():
                 if (self.currentWordObject != None):
                       self.currentWordObject.status += 1
                 
+                if(len(self.list_of_Words)==0):
+                      print('end')
+                
                 # =====================================
 
 
@@ -194,3 +200,42 @@ class AppForLearningEnglish():
         def Run(self):
             self.set_geometry_center()
             self.root.mainloop()
+
+#  ------------------------------------------------------------
+#  ------------------------------------------------------------
+
+class RunAppForEnglish():
+      def __init__(self,DataBase_path_is = '../Data Base') -> None:
+            self.DataBase_path_is = DataBase_path_is
+      
+      def loadPKLfiles(self,Debug = False):
+            # pass
+            list_of_Word_for_pass = []
+            for box_number in range(6):
+                # ----  << set path >>             
+                mypath = os.path.join(self.DataBase_path_is, f'Box_{box_number+1}.pkl')
+                # -------------------------------
+                if(Debug):
+                    print(mypath)
+                # -------------------------------
+                with open(mypath, 'rb') as inp:
+                    tmp_list_is = pickle.load(inp)
+                # -------------------------------
+                if(Debug):
+                    # print(tmp_list_is[0])
+                    print('len: ',len(tmp_list_is))
+                    first_item_is  = tmp_list_is[0]
+                    print(first_item_is)
+                    print('~'*20)
+                # -------------------------------
+
+                list_of_Word_for_pass.append(tmp_list_is)
+
+            return list_of_Word_for_pass
+
+
+
+if (__name__ == '__main__'):
+      L = RunAppForEnglish().loadPKLfiles()
+      print(len(L),type(L[0]),type(L[0][0]))
+      AppForLearningEnglish('',L[0]).Run()
