@@ -6,7 +6,7 @@ from Lernkartei_data_structure import Lernkartei_word
 
 
 class AppForLearningEnglish():
-        def __init__(self , title_for_root:str="sina yademellat" , list_of_Words:list[Lernkartei_word] = None):
+        def __init__(self , title_for_root:str="sina yademellat" , All_list_fo_word:list[list[Lernkartei_word]] = None):
             '''
                 title_for_root : اسم آن گروه از لغات باشد بهتر است 
             '''
@@ -24,9 +24,18 @@ class AppForLearningEnglish():
             #! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
             self.current_word_index = -1 
-            self.list_of_Words = list_of_Words
+            self.current_List_index_ = 0
+
+            self.All_word_input_list=All_list_fo_word.copy()
+
+            self.list_of_Words = self.All_word_input_list[self.current_List_index_]
             # ----------------- add current word object.
             self.currentWordObject = None
+            # !================= laod new List of word
+            tmp_Word_L = [Lernkartei_word('T','C',0)]
+            self.new_All_list_fo_word = []
+            for i in range(6):
+                self.new_All_list_fo_word.append(tmp_Word_L)
             # =============================================
             
             # --------------- Buttom(1): Next word ---------------
@@ -164,18 +173,21 @@ class AppForLearningEnglish():
                 # ==================================
                 if (self.currentWordObject != None):
                       self.currentWordObject.status += 1
-                
-                if(len(self.list_of_Words)==0):
-                      print('end')
-                
+
                 # =====================================
 
 
                 self.current_word_index += 1
-                self.current_word_index %= len(self.list_of_Words)
+                # self.current_word_index %= len(self.list_of_Words)
+
+                if(self.current_word_index >= len(self.list_of_Words)):
+                      self.SetAllWordList(self.list_of_Words)
+                      self.open_new_Box_of_words()
+                      return
                 # ----------------------------------------------<< add current word object :) >> ------------------------------------------
                 self.currentWordObject = self.list_of_Words[self.current_word_index]
-                self.update_word(self.currentWordObject.txt) 
+                self.update_word(self.currentWordObject.txt)
+
                 # -------------------------------------------------------------------------------------------------
 
         def show_Collocations_of_curent_word(self):
@@ -194,6 +206,36 @@ class AppForLearningEnglish():
                     self.currentWordObject.status = 0
                     self.Next_word_for_Button1()    # got to next word
 
+        # +++++++++++++++++++++++
+
+        def SetAllWordList(self,list_of_word_is:list[Lernkartei_word]):
+            for w in list_of_word_is:
+                print(w.txt , 's: ', w.status)
+                # break
+                if(w.status <=1 ):
+                    self.new_All_list_fo_word[0].append(w)
+
+                if(w.status >= len(self.new_All_list_fo_word)):
+                    self.new_All_list_fo_word[-1].append(w)
+  
+                else:
+                    self.new_All_list_fo_word[w.status].append(w)
+
+            print('-'*6 , ' End curent box ','-'*6)
+        # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        def open_new_Box_of_words(self):
+            
+            self.current_word_index  = -1 
+            self.current_List_index_ += 1
+            if(self.current_List_index_ >= len(self.All_word_input_list)):
+                  print('EndL')
+                  self.root.destroy()
+                #   Save New word in pkl file 
+            else:
+                    self.list_of_Words = self.All_word_input_list[self.current_List_index_]
+                    self.Next_word_for_Button1()
+
+
         #! =================================================
         #  ~~~~~~~~~~~~~~~~~~ <<  RUN >> ~~~~~~~~~~~~~~~~~~
         #! =================================================
@@ -205,10 +247,13 @@ class AppForLearningEnglish():
 #  ------------------------------------------------------------
 
 class RunAppForEnglish():
-      def __init__(self,DataBase_path_is = '../Data Base') -> None:
+    # """_summary_
+    # برای آینده این که لیست و شافل کنی و  با کیبورد کار کنه و ..
+    # """
+    def __init__(self,DataBase_path_is = '../Data Base') -> None:
             self.DataBase_path_is = DataBase_path_is
-      
-      def loadPKLfiles(self,Debug = False):
+    
+    def loadPKLfiles(self,Debug = False):
             # pass
             list_of_Word_for_pass = []
             for box_number in range(6):
@@ -235,7 +280,16 @@ class RunAppForEnglish():
 
 
 
+
 if (__name__ == '__main__'):
-      L = RunAppForEnglish().loadPKLfiles()
-      print(len(L),type(L[0]),type(L[0][0]))
-      AppForLearningEnglish('',L[0]).Run()
+    # L = RunAppForEnglish().loadPKLfiles()
+    # print(len(L),type(L[0]),type(L[0][0]))
+    # AppForLearningEnglish('',L).Run()
+    # ----------------------
+    tmp_1 = [Lernkartei_word('A','a',1) ,Lernkartei_word('AA','aa',1)  ]
+    tmp_2 = [Lernkartei_word('B','b',2) ,Lernkartei_word('BB','bb',2)  ]
+    
+    M = [tmp_1, tmp_2]
+    AppForLearningEnglish('',M).Run()
+
+    
