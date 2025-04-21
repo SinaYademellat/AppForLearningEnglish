@@ -282,14 +282,22 @@ class RunAppForEnglish():
 
 
 if (__name__ == '__main__'):
-    # L = RunAppForEnglish().loadPKLfiles()
-    # print(len(L),type(L[0]),type(L[0][0]))
-    # AppForLearningEnglish('',L).Run()
-    # ----------------------
-    tmp_1 = [Lernkartei_word('A','a',1) ,Lernkartei_word('AA','aa',1)  ]
-    tmp_2 = [Lernkartei_word('B','b',2) ,Lernkartei_word('BB','bb',2)  ]
-    
-    M = [tmp_1, tmp_2]
-    AppForLearningEnglish('',M).Run()
+    # ! -----------------<< test 1 >>---------------------------
+    """_summary_
+    برای خودم دو تا باکس دل خواه با مقادیر گفته شده ساختیم و تست کردیم
+    """
+    # tmp_1 = [Lernkartei_word('A','a',1) ,Lernkartei_word('AA','aa',1)  ]
+    # tmp_2 = [Lernkartei_word('B','b',2) ,Lernkartei_word('BB','bb',2)  ]
+    # M = [tmp_1, tmp_2]
+    # AppForLearningEnglish('',M).Run()
+    # ! --------------------------------------------
+
+    # ---------------
+    """_summary_
+        روی کل دیتاست ما-همان باکس های که گفتیم اجراه بشه
+    """
+    L = RunAppForEnglish().loadPKLfiles()
+    AppForLearningEnglish('',L).Run()
+
 
     
