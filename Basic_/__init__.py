@@ -1,0 +1,1 @@
+from .Lernkartei_data_structure import Lernkartei_word
