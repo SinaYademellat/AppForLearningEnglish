@@ -2,8 +2,9 @@ import os
 import pickle
 
 import tkinter as tk
-from Lernkartei_data_structure import Lernkartei_word
+# from Lernkartei_data_structure import Lernkartei_word
 
+from .Lernkartei_data_structure import Lernkartei_word
 
 class AppForLearningEnglish():
         def __init__(self , title_for_root:str="sina yademellat" , All_list_fo_word:list[list[Lernkartei_word]] = None):
@@ -278,9 +279,6 @@ class RunAppForEnglish():
 
             return list_of_Word_for_pass
 
-
-
-
 if (__name__ == '__main__'):
     # ! -----------------<< test 1 >>---------------------------
     """_summary_
@@ -298,6 +296,3 @@ if (__name__ == '__main__'):
     """
     L = RunAppForEnglish().loadPKLfiles()
     AppForLearningEnglish('',L).Run()
-
-
-    

@@ -1,4 +1,5 @@
 import sys
+import Basic_.first_loading as load_for_first_time
 
 def main():
     arguments = sys.argv
@@ -8,6 +9,8 @@ def main():
         """راه درستش 
         راه درستش این هست که به شکل پکچ کنیم و ران بگیریم 
         """
+        load_for_first_time.Run_first_loading()
+        
         return 0 
     
     else:

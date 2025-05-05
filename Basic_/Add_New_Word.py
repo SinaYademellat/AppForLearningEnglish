@@ -4,9 +4,6 @@ import tkinter as tk
 from Lernkartei_data_structure import Lernkartei_word
 
 
-
-
-
 class AddNewWord_app():
     def __init__(self) -> None:
         # self.counter_nuber_is = 0
