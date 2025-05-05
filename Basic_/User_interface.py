@@ -251,7 +251,7 @@ class RunAppForEnglish():
     # """_summary_
     # برای آینده این که لیست و شافل کنی و  با کیبورد کار کنه و ..
     # """
-    def __init__(self,DataBase_path_is = '../Data Base') -> None:
+    def __init__(self,DataBase_path_is = 'Data Base') -> None: #'../Data Base'
             self.DataBase_path_is = DataBase_path_is
     
     def loadPKLfiles(self,Debug = False):
@@ -279,20 +279,26 @@ class RunAppForEnglish():
 
             return list_of_Word_for_pass
 
-if (__name__ == '__main__'):
-    # ! -----------------<< test 1 >>---------------------------
-    """_summary_
-    برای خودم دو تا باکس دل خواه با مقادیر گفته شده ساختیم و تست کردیم
-    """
-    # tmp_1 = [Lernkartei_word('A','a',1) ,Lernkartei_word('AA','aa',1)  ]
-    # tmp_2 = [Lernkartei_word('B','b',2) ,Lernkartei_word('BB','bb',2)  ]
-    # M = [tmp_1, tmp_2]
-    # AppForLearningEnglish('',M).Run()
-    # ! --------------------------------------------
 
-    # ---------------
-    """_summary_
-        روی کل دیتاست ما-همان باکس های که گفتیم اجراه بشه
-    """
+def Run_user_interface_main():
     L = RunAppForEnglish().loadPKLfiles()
     AppForLearningEnglish('',L).Run()
+
+
+# if (__name__ == '__main__'):
+#     # ! -----------------<< test 1 >>---------------------------
+#     """_summary_
+#     برای خودم دو تا باکس دل خواه با مقادیر گفته شده ساختیم و تست کردیم
+#     """
+#     # tmp_1 = [Lernkartei_word('A','a',1) ,Lernkartei_word('AA','aa',1)  ]
+#     # tmp_2 = [Lernkartei_word('B','b',2) ,Lernkartei_word('BB','bb',2)  ]
+#     # M = [tmp_1, tmp_2]
+#     # AppForLearningEnglish('',M).Run()
+#     # ! --------------------------------------------
+
+#     # ---------------
+#     """_summary_
+#         روی کل دیتاست ما-همان باکس های که گفتیم اجراه بشه
+#     """
+#     L = RunAppForEnglish().loadPKLfiles()
+#     AppForLearningEnglish('',L).Run()
