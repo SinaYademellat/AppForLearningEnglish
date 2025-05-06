@@ -1,5 +1,6 @@
 __pycache__/
 TMP_/
-tmp_*.ipynb
-test_*.ipynb
-test_*.py
+# tmp_*.ipynb
+# test_*.ipynb
+# test_*.py
+*.pkl
