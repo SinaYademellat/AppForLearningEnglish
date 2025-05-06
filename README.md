@@ -2,20 +2,8 @@
 
 # 01  Basic_
 
----
 
-حاجی این جا تا قبل از مرحله مرج موفت ها رو از فولدر 
-ignor 
-خارج کن زمانی که خواستیم مرج کنیم دوباره یک کامیت کن که موقت ها tmp نباشند
-
-TMP_/
-
-tmp_*.ipynb
-
-
----
-
-Run first time
+Run first time << install app :) >>
 
 ```
 # Run for first time

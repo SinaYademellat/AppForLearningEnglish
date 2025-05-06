@@ -1,8 +1,19 @@
+"""
+یک پیشنهاد :
+بر اساس 
+dill  
+پیش بریم
+به جای 
+pickle
+"""
+
 import os
 import pickle
 import tkinter as tk
-from Lernkartei_data_structure import Lernkartei_word
 
+from Basic_.Lernkartei_data_structure import Lernkartei_word
+
+from pathlib import Path
 
 class AddNewWord_app():
     def __init__(self) -> None:
@@ -56,8 +67,12 @@ class AddNewWord_app():
         if(len(self.newWordList)==0): # مثل این که اول کامیت میکنیم بعد پوش میکنیم تو گیت :)
             print('first push buttom "ok"')
             return
-        ds_path = '../Data Base'
-        mypath = os.path.join(ds_path, 'Box_1.pkl')
+
+
+        DataBase_path_is = 'Data Base'
+        box_number = 0
+        mypath = os.path.join(DataBase_path_is, f'Box_{box_number+1}.pkl')
+
         with open(mypath, 'rb') as inp:
             tmp_list_is = pickle.load(inp)
 
@@ -103,6 +118,9 @@ class AddNewWord_app():
         
 
 
-if (__name__=='__main__'):
+def Run_Add_New_word():
     AddNewWord_app()
+
+# if (__name__=='__main__'):
+#     AddNewWord_app()
     
