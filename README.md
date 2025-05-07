@@ -2,13 +2,13 @@
 
 # 01  Basic_
 
-
 Run first time << install app :) >>
 
 ```
-# Run for first time
-python main.py y
+python main.py y #Run for first time
 ```
 
-
-
+Run lernkarten box
+```
+python main.py n[N,....] #ore every keyWord
+```
